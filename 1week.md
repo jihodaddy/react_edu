@@ -20,19 +20,22 @@
 
 - Hook을 사용하기 위해 class형보다는 함수형을 주로 사용
 
-- props
+## props
 
-  - 태그안에 {}로 보냄
-  - 태그 사이에 내용 보냄, 받는 component에서는 children으로 받음 {props.childrens}
-  - props 비구조화 할당: 객체에서 값을 추출하는 문법
-    - ex. const name = props.name;
-    ```
-        const MyComponent = (props) => {
-        const { name, children, name2 } = props;
-    ```
-    ```
-        const MyComponent = ({ name, name2, children }) => {
-    ```
+- 태그안에 {}로 보냄
+- 태그 사이에 내용 보냄, 받는 component에서는 children으로 받음 {props.childrens}
+- props 비구조화 할당: 객체에서 값을 추출하는 문법
+
+  - ex. const name = props.name;
+
+  ```
+      const MyComponent = (props) => {
+      const { name, children, name2 } = props;
+  ```
+
+  ```
+      const MyComponent = ({ name, name2, children }) => {
+  ```
 
 - 콘솔에만 증가값 찍히고 뷰화면에서는 변하지 않음
 - 다시 렌더링이 되야지만 뷰에 반영
@@ -59,7 +62,7 @@
 export default Counter;
 ```
 
-- useState 사용
+## useState 사용
 
 ```
     import { useState } from "react";
@@ -87,11 +90,11 @@ export default Counter;
 
 ```
 
-- 이벤트 핸들링
+## 이벤트 핸들링
 
-  - 이벤트이름은 카멜 표기법. ex. onClick
-  - 함수 형태의 값을 전달
-  - DOM요소 안에서만 이벤트 설정 가능
+- 이벤트이름은 카멜 표기법. ex. onClick
+- 함수 형태의 값을 전달
+- DOM요소 안에서만 이벤트 설정 가능
 
 - input
 
@@ -107,3 +110,45 @@ export default Counter;
 ```
 
     - e.target : input객체에 접근
+    - e값에 onChange함수에 미리 담아 놓고 이벤트 발생시 전달
+
+## 반복
+
+- 맵 선언해서 사용
+
+```
+import React from "react";
+
+const IterationSample = () => {
+  const names = ["눈사람", "얼음", "눈", "바람"];
+  const nameList = names.map((e) => <li>{e}</li>);
+  console.log(nameList);
+  return (
+    //<ul> {[<li>눈사람</li>, <li>얼음</li>, <li>눈</li>, <li>바람</li>]} </ul>
+    <ul>{nameList}</ul>
+  );
+};
+
+export default IterationSample;
+
+```
+
+    - 바로 안에서 맵으로 사용
+
+```
+    import React from "react";
+
+const IterationSample = () => {
+  const names = ["눈사람", "얼음", "눈", "바람"];
+  return (
+    <ul>
+      {names.map((e) => (
+        <li>{e}</li>
+      ))}
+    </ul>
+  );
+};
+
+export default IterationSample;
+
+```

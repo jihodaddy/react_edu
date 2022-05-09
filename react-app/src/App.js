@@ -1,12 +1,10 @@
 import "./App.css";
-import EventPractice from "./components/EventPractice";
-
-import Say from "./components/Say";
+import IterationSample from "./components/IterationSample";
 
 function App() {
   return (
     <div className="App">
-      <EventPractice />
+      <IterationSample />
     </div>
   );
 }
