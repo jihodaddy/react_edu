@@ -38,6 +38,8 @@ const Jsx = () => {
       {name || "이름이 없습니다."}
       {/* null, undefined에서만 false로 구현 */}
       {name ?? "이름이 없습니다."}
+
+      <input />
       <br />
     </>
   );

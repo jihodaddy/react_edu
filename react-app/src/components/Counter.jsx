@@ -11,6 +11,7 @@ const Counter = () => {
     // set함수가 비동기라 console에는 더해지기전 number만 뜸.
     console.log(number);
   };
+
   return (
     <>
       <h1>{number}</h1>
