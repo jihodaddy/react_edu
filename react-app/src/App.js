@@ -1,10 +1,9 @@
-import "./App.css";
-import Info from "./components/Info";
+import Todo from "./components/Todo";
 
 function App() {
   return (
     <div className="App">
-      <Info />
+      <Todo />
     </div>
   );
 }

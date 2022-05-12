@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Info = () => {
   const [name, setName] = useState("");
@@ -10,6 +10,18 @@ const Info = () => {
   const onChangeNickname = (e) => {
     setNickname(e.target.value);
   };
+
+  useEffect(() => {
+    console.log("mount");
+    console.log({
+      name,
+      nickname,
+    });
+    return () => {
+      console.log("unmount");
+      console.log(name);
+    };
+  }, [name]);
   return (
     <>
       <div>
