@@ -1,17 +1,15 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
+import Item from "./Item";
+import Form from "./Form";
 
 const Todo = () => {
-  const [text, setText] = useState("");
   const [list, setList] = useState([]);
   const nextId = useRef(1);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const nextList = [...list, { id: nextId.current, text }];
+  const handleAdd = (text) => {
+    const nextList = [...list, { id: nextId.current, text, isDone: false }];
     setList(nextList);
-    setText("");
     nextId.current++;
   };
 
@@ -19,30 +17,35 @@ const Todo = () => {
     const nextList = list.filter((item) => item.id !== deleteId);
     setList(nextList);
   };
+  const handelChecked = (id) => {
+    // id로 바꿀 item을 찾아서 isDone을 반대로 바꿔주기
+
+    const newList = list.map((item) =>
+      // if (item.id !== id) {
+      //   return item;
+      // } else {
+      //   const newItem = { ...item, isDone: !item.isDone };
+      //   return newItem;
+      // }
+      item.id === id ? { ...item, isDone: !item.isDone } : item
+    );
+    setList(newList);
+  };
+
   return (
     <Layout>
       <Container>
         <Title>일정관리</Title>
-        <Form onSubmit={handleSubmit}>
-          <InputText
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            placeholder="할 일을 입력하세요"
-          />
-          <BtnSubmit>+</BtnSubmit>
-        </Form>
+        <Form onAdd={handleAdd} />
         <Body>
           <List>
-            {list.map((item, i) => (
-              <Item key={item.id}>
-                <label>
-                  <input type="checkbox" />
-                  <Content>{item.text}</Content>
-                </label>
-                <BtnDelete onClick={() => handleDelete(item.id)}>
-                  삭제
-                </BtnDelete>
-              </Item>
+            {list.map((item) => (
+              <Item
+                key={item.id}
+                data={item}
+                onDelete={handleDelete}
+                onChecked={handelChecked}
+              />
             ))}
           </List>
         </Body>
@@ -69,43 +72,6 @@ const Title = styled.div`
   padding: 10px;
   font-size: 1.5rem;
 `;
-const Form = styled.form`
-  display: flex;
-  background: #495057;
-`;
-
-const InputText = styled.input`
-  flex: 1;
-  /* 추가 */
-  background: none;
-  outline: none;
-  border: none;
-  padding: 0.5rem;
-  font-size: 1.125rem;
-  line-height: 1.5;
-  color: white;
-  &::placeholder {
-    color: #dee2e6;
-  }
-`;
-
-const BtnSubmit = styled.button`
-  background: none;
-  outline: none;
-  border: none;
-  background: #868e96;
-  color: white;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: 0.1s background ease-in;
-  &:hover {
-    background: #adb5bd;
-  }
-`;
 
 const Body = styled.div`
   background: #fff;
@@ -117,15 +83,5 @@ const List = styled.ul`
   padding: 0;
   margin: 0;
 `;
-const Item = styled.li`
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  & + & {
-    border-top: 1px solid #d4d0d0;
-  }
-`;
-const Content = styled.span``;
-const BtnDelete = styled.button``;
 
 export default Todo;

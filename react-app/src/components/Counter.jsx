@@ -9,6 +9,12 @@ const Counter = () => {
     //  number += 1;
     setNumber(number + 1);
     // set함수가 비동기라 console에는 더해지기전 number만 뜸.
+
+    //콜백함수 사용하면 함수 안에서 변경됨 5-> 10으로 추가됨.
+    // setNumber((prev) => prev + 1);
+    // setNumber((prev) => prev + 1);
+    // setNumber((prev) => prev + 1);
+    // setNumber((prev) => prev + 1);
     console.log(number);
   };
 
