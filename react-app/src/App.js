@@ -1,9 +1,9 @@
-import Todo from "./components/Todo";
+import Bootstrap from "./components/Bootstrap";
 
 function App() {
   return (
     <div className="App">
-      <Todo />
+      <Bootstrap />
     </div>
   );
 }
