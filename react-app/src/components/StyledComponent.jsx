@@ -1,6 +1,8 @@
 import styled, { css } from "styled-components";
 
 const Box = styled.div`
+  // 인라인 적용된 값을 가져옴 $써서
+  // color이 있으면 그대로 없으면 blue로
   background: ${(props) => props.color || "blue"};
   padding: 1rem;
   height: 500px;

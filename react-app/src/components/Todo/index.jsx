@@ -2,23 +2,18 @@ import React, { useState, useRef } from "react";
 import styled from "styled-components";
 
 const Todo = () => {
-  //추가 누를때 새로고침 안되도록
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const nextList = [...List, { id: nextId.current, text }];
-    setList(nextList);
-    nextId.current++;
-  };
-  const defaultTodo = [
-    {
-      id: 1,
-      text: "리액트 기초 알기",
-    },
-  ];
-
   const [text, setText] = useState("");
   const [list, setList] = useState([]);
-  const nextId = useRef(defaultTodo.length + 1);
+  const nextId = useRef(1);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const nextList = [...list, { id: nextId.current, text }];
+    setList(nextList);
+    setText("");
+    nextId.current++;
+  };
 
   const handleDelete = (deleteId) => {
     const nextList = list.filter((item) => item.id !== deleteId);
@@ -34,17 +29,17 @@ const Todo = () => {
             onChange={(e) => setText(e.target.value)}
             placeholder="할 일을 입력하세요"
           />
-          <BtnSubmit ref={nextId}>+</BtnSubmit>
+          <BtnSubmit>+</BtnSubmit>
         </Form>
         <Body>
           <List>
-            {list.map((todo, i) => (
-              <Item key={todo.id}>
+            {list.map((item, i) => (
+              <Item key={item.id}>
                 <label>
                   <input type="checkbox" />
-                  <Content>{todo.text}</Content>
+                  <Content>{item.text}</Content>
                 </label>
-                <BtnDelete onClick={() => handleDelete(todo.id)}>
+                <BtnDelete onClick={() => handleDelete(item.id)}>
                   삭제
                 </BtnDelete>
               </Item>

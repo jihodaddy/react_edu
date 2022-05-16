@@ -11,6 +11,10 @@ const Info = () => {
     setNickname(e.target.value);
   };
 
+  // useEffect는 렌더링과 관련
+  // 마지막 배열 []이면 최초 렌더링 될때 한번만 실행
+  // []값이 있으면 값이 변경 될 때마다 실행
+  // 리턴 위에는 렌더링 될떄 리턴은 끝나기직전(재렌더링 전) 실행
   useEffect(() => {
     console.log("mount");
     console.log({

@@ -9,7 +9,7 @@ const getAverage = (numbers) => {
 
 const Average = () => {
   const [list, setList] = useState([]);
-  const [number, setNember] = useState("");
+  const [number, setNember] = useState(10);
   const inputEl = useRef(null);
 
   const onChange = useCallback((e) => {

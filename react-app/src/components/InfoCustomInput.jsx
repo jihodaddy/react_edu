@@ -6,6 +6,7 @@ const InfoCustomInput = () => {
     name: "",
     nickname: "",
   });
+  // state 처리 하기 위해  input에 name값이 설정 되어있어야 함
   const { name, nickname } = state;
   return (
     <>
