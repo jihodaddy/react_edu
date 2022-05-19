@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, Outlet } from "react-router-dom";
 import styled from "styled-components";
 
 const linkList = [
@@ -33,15 +33,18 @@ const TopNav = () => {
 
   if (!isShow) return <></>;
   return (
-    <Container>
-      <Nav>
-        {linkList.map(({ link, name }) => (
-          <Link to={link} key={link}>
-            <BtnLink>{name}</BtnLink>
-          </Link>
-        ))}
-      </Nav>
-    </Container>
+    <>
+      <Container>
+        <Nav>
+          {linkList.map(({ link, name }) => (
+            <Link to={link} key={link}>
+              <BtnLink>{name}</BtnLink>
+            </Link>
+          ))}
+        </Nav>
+      </Container>
+      <Outlet />
+    </>
   );
 };
 

@@ -23,4 +23,8 @@
     - await 로 이용
 
 - HTML 태그 적용
+
   - <Title dangerouslySetInnerHTML={{ __html: title }} />
+
+- Nav바 활용: useLocation, Outlet
+- axios 인스터스

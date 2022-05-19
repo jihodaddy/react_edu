@@ -7,11 +7,14 @@ import TopNav from "./components/organisms/TopNav";
 const Router = () => {
   return (
     <BrowserRouter>
-      <TopNav />
+      {/* <TopNav /> */}
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/movie" element={<Movie />} />
-        <Route path="/book" element={<Book />} />
+
+        <Route path="/" element={<TopNav />}>
+          <Route path="/movie" element={<Movie />} />
+          <Route path="/book" element={<Book />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
