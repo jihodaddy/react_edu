@@ -19,3 +19,8 @@
     확인 버튼을 누르면 input에 입력된 값을 1번 함수에 넣고 실행
             & 모달닫기
     - 부모값을 바꿔줄수 있는 함수를 자식에 props로 전달
+
+## naver
+
+    - npx create-react-app naver
+    - npm i axios styled-components react-router-dom
