@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getMovies = async (text) => {
+export const getMovies = async (params) => {
   const config = {
     url: "/v1/search/movie.json",
     headers: {
@@ -8,9 +8,7 @@ export const getMovies = async (text) => {
       "X-Naver-Client-Secret": "mdUzXXU1Ss",
     },
     method: "GET",
-    params: {
-      query: text,
-    },
+    params: params,
   };
   const result = await axios(config);
   return result.data;

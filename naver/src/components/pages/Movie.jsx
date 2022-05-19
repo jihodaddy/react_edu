@@ -1,67 +1,48 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
 import { getMovies } from "../../apis";
+import MovieList from "../templates/Movie/List";
+import SearchForm from "../templates/Movie/SearchForm";
 
 const Movie = () => {
-  const [text, setText] = useState("");
+  const [country, setCountry] = useState("ALL");
   const [movieList, setMovieList] = useState([]);
+  const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    refreshList();
+  }, [country, query]);
 
   const refreshList = async () => {
-    const { items } = await getMovies(text);
+    if (!query) return;
+    // const params = {
+    //   query: text,
+    //   country: country,
+    // };
+    // if (country === "ALL") {
+    //   delete params.country;
+    // }
+    const params = {
+      query: query,
+    };
+    if (country !== "ALL") {
+      params.country = country;
+    }
+
+    const { items } = await getMovies(params);
     console.log(items);
     setMovieList(items);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    refreshList();
   };
 
   return (
     <>
       <h1>영화</h1>
-      {/* 엔터나 검색 누를때 실행되도록 Form에 onSubmit */}
-      <Form onSubmit={handleSubmit}>
-        <InputText value={text} onChange={(e) => setText(e.target.value)} />
-        <BtnSubmit>검색</BtnSubmit>
-      </Form>
-      <List>
-        {movieList.map(({ link, image, title }) => (
-          <Item key={link}>
-            <a href={link} target="_blank" rel="noreferrer">
-              <Thumbnail src={image} />
-              <Title dangerouslySetInnerHTML={{ __html: title }} />
-            </a>
-          </Item>
-        ))}
-      </List>
+      <SearchForm
+        onChangeCountry={(val) => setCountry(val)}
+        onChangeQuery={(val) => setQuery(val)}
+      />
+      <MovieList data={movieList} />
     </>
   );
 };
-
-const Form = styled.form`
-  display: flex;
-  padding: 20px;
-`;
-const InputText = styled.input`
-  flex: 1;
-`;
-const BtnSubmit = styled.button`
-  margin-left: 10px;
-`;
-
-const List = styled.ul`
-  padding: 20px;
-  margin: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 20px;
-`;
-const Item = styled.li``;
-const Thumbnail = styled.img`
-  width: 100%;
-`;
-const Title = styled.p``;
 
 export default Movie;
