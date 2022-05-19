@@ -31,6 +31,7 @@ export default Carousel;
 
 const Container = styled.div`
   position: relative;
+
   width: 800px;
   height: 300px;
 `;

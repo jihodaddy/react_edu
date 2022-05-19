@@ -50,7 +50,10 @@ const Button = styled.button`
 
 const Menu = styled.ul`
   position: absolute;
+  background: #fff;
+  top: 45px;
   margin: 0;
+  z-index: 10;
   padding: 0;
   list-style: none;
   border: 1px solid #ddd;

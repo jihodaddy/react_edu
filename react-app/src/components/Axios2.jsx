@@ -6,7 +6,7 @@ const Axios2 = () => {
 
   useEffect(() => {
     //IIFE 즉시실행함수
-    const fetch = (async () => {
+    (async () => {
       const response = await axios.get(
         "https://jsonplaceholder.typicode.com/todos/1"
       );
