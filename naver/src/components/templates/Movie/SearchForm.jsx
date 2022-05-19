@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { countryList } from "../../../datas";
 
-const SearchForm = ({ onChangeCountry, onChangeQuery }) => {
+const SearchForm = ({ onChange }) => {
   const [text, setText] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onChangeQuery(text);
+    onChange({ name: "query", value: text });
   };
 
   return (
     <>
       <Form onSubmit={handleSubmit}>
-        <select onChange={(e) => onChangeCountry(e.target.value)}>
+        <select
+          onChange={(e) => onChange({ name: "country", value: e.target.value })}
+        >
           <option value="ALL">전체</option>
           {countryList.map(({ code, name }) => (
             <option key={code} value={code}>
