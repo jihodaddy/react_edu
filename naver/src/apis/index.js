@@ -20,8 +20,7 @@ export const getMovies = async (params) => {
 
 export const getBooks = async (text) => {
   const config = {
-    url: "/v1/search/book.json",
-
+    url: "/v1/search/book.json?query=자바",
     method: "GET",
     query: text,
   };

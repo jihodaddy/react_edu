@@ -5,9 +5,15 @@ import { getBooks } from "../../apis";
 const Book = () => {
   const [text, setText] = useState("");
 
+  const refreshList = async () => {
+    const { items } = await getBooks(text);
+    console.log(items);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    getBooks(text);
+    //getBooks(text);
+    refreshList();
   };
   return (
     <div>
